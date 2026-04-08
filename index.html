@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Vamshi Shopping Mall | వంశీ షాపింగ్ మాల్</title>
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+<style>
+
+/* ===== DESIGN SYSTEM ===== */
+
+:root{
+--primary:#0f172a;
+--secondary:#f59e0b;
+--accent:#3b82f6;
+--bg:#f8fafc;
+--text:#334155;
+--white:#ffffff;
+--radius:12px;
+--container:1200px;
+--shadow:0 4px 10px rgba(0,0,0,.06);
+--shadow-lg:0 10px 25px rgba(0,0,0,.1);
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:system-ui,-apple-system,sans-serif;
+background:var(--bg);
+color:var(--text);
+line-height:1.6;
+overflow-x:hidden;
+}
+
+/* ===== LAYOUT ===== */
+
+.container{
+max-width:var(--container);
+margin:auto;
+padding:0 20px;
+}
+
+section{
+padding:80px 0;
+}
+
+/* ===== NAVBAR ===== */
+
+nav{
+position:fixed;
+top:0;
+width:100%;
+background:rgba(255,255,255,0.95);
+backdrop-filter:blur(10px);
+box-shadow:0 2px 8px rgba(0,0,0,.08);
+z-index:1000;
+}
+
+.nav-wrapper{
+height:70px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.logo{
+font-size:20px;
+font-weight:700;
+color:var(--primary);
+text-decoration:none;
+display:flex;
+align-items:center;
+gap:10px;
+}
+
+.logo i{
+color:var(--secondary);
+font-size:24px;
+}
+
+.logo span{
+display:block;
+font-size:12px;
+color:#64748b;
+font-weight:400;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:var(--text);
+font-weight:500;
+transition:color .3s;
+}
+
+.nav-links a:hover{
+color:var(--secondary);
+}
+
+.menu-toggle{
+display:none;
+font-size:22px;
+cursor:pointer;
+}
+
+/* ===== HERO ===== */
+
+.hero{
+margin-top:70px;
+min-height:85vh;
+
+background:
+linear-gradient(135deg, rgba(15,23,42,.85), rgba(15,23,42,.75)),
+url("https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?auto=format&fit=crop&w=1950&q=80");
+
+background-size:cover;
+background-position:center;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+color:white;
+padding:120px 20px;
+}
+
+.hero h1{
+font-size:52px;
+font-weight:800;
+margin-bottom:10px;
+}
+
+.hero h2{
+font-size:26px;
+margin-bottom:20px;
+color:#cbd5e1;
+}
+
+.hero p{
+font-size:20px;
+max-width:650px;
+margin:auto;
+margin-bottom:25px;
+}
+
+.rating{
+color:#fbbf24;
+margin-bottom:15px;
+}
+
+.btn{
+background:var(--secondary);
+color:white;
+padding:14px 30px;
+border-radius:40px;
+text-decoration:none;
+font-weight:600;
+}
+
+/* ===== TITLES ===== */
+
+.section-title{
+text-align:center;
+margin-bottom:40px;
+font-size:32px;
+color:var(--primary);
+}
+
+/* ===== GRID ===== */
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:30px;
+}
+
+/* ===== CARDS ===== */
+
+.card{
+background:white;
+padding:30px;
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+text-align:center;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-6px);
+box-shadow:var(--shadow-lg);
+}
+
+.icon{
+font-size:40px;
+color:var(--secondary);
+margin-bottom:10px;
+}
+
+/* ===== PRODUCTS ===== */
+
+.product{
+background:white;
+border-radius:var(--radius);
+overflow:hidden;
+box-shadow:var(--shadow);
+}
+
+.product img{
+width:100%;
+height:250px;
+object-fit:cover;
+}
+
+.product-info{
+padding:15px;
+}
+
+/* ===== PAYMENT ===== */
+
+.payment-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+gap:20px;
+max-width:700px;
+margin:auto;
+}
+
+.payment-card{
+background:white;
+padding:25px;
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+text-align:center;
+}
+
+.payment-card i{
+font-size:36px;
+margin-bottom:10px;
+}
+
+/* ===== REVIEWS ===== */
+
+.review{
+background:white;
+padding:20px;
+border-radius:var(--radius);
+box-shadow:var(--shadow);
+}
+
+.stars{
+color:#fbbf24;
+margin-bottom:10px;
+}
+
+/* ===== LOCATION ===== */
+
+.location{
+background:var(--primary);
+color:white;
+}
+
+.location-grid{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:40px;
+align-items:center;
+}
+
+.info-item{
+display:flex;
+gap:12px;
+margin-bottom:15px;
+}
+
+.info-item i{
+color:var(--secondary);
+}
+
+.map iframe{
+width:100%;
+height:350px;
+border:0;
+border-radius:var(--radius);
+}
+
+/* ===== FOOTER ===== */
+
+footer{
+background:#020617;
+color:#94a3b8;
+text-align:center;
+padding:30px;
+}
+
+/* ===== FLOAT BUTTONS ===== */
+
+.whatsapp,.call-btn{
+position:fixed;
+right:20px;
+width:55px;
+height:55px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+color:white;
+box-shadow:0 4px 15px rgba(0,0,0,0.3);
+}
+
+.whatsapp{
+bottom:20px;
+background:#25D366;
+}
+
+.call-btn{
+bottom:90px;
+background:var(--accent);
+}
+
+/* ===== MOBILE ===== */
+
+@media(max-width:768px){
+
+.nav-links{
+position:absolute;
+top:70px;
+left:0;
+width:100%;
+background:white;
+flex-direction:column;
+align-items:center;
+display:none;
+padding:25px 0;
+}
+
+.nav-links.active{
+display:flex;
+}
+
+.menu-toggle{
+display:block;
+}
+
+.location-grid{
+grid-template-columns:1fr;
+}
+
+.hero h1{
+font-size:34px;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+<div class="container nav-wrapper">
+
+<a href="#" class="logo">
+<i class="fas fa-shopping-bag"></i>
+<div>
+Vamshi Mall
+<span>వంశీ షాపింగ్ మాల్</span>
+</div>
+</a>
+
+<div class="nav-links">
+<a href="#about">About</a>
+<a href="#products">Products</a>
+<a href="#reviews">Reviews</a>
+<a href="#location">Location</a>
+</div>
+
+<div class="menu-toggle">
+<i class="fas fa-bars"></i>
+</div>
+
+</div>
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="container">
+
+<div class="rating">
+⭐ 4.0 Stars (1K+ Reviews)
+</div>
+
+<h1>Thungathurthi's Best Shopping Destination</h1>
+
+<h2>వంశీ షాపింగ్ మాల్</h2>
+
+<p>
+Experience quality fashion and complete family shopping under one roof.
+Open until 9 PM daily.
+</p>
+
+<a href="#location" class="btn">Get Directions</a>
+
+</div>
+
+</section>
+
+<!-- ABOUT -->
+
+<section id="about">
+
+<div class="container">
+
+<h2 class="section-title">Why Choose Us</h2>
+
+<div class="grid">
+
+<div class="card">
+<div class="icon"><i class="fa-solid fa-shirt"></i></div>
+<h3>Quality Fashion</h3>
+<p>Latest clothing for men, women and kids.</p>
+</div>
+
+<div class="card">
+<div class="icon"><i class="fa-solid fa-store"></i></div>
+<h3>One Stop Shop</h3>
+<p>Everything for your family in one store.</p>
+</div>
+
+<div class="card">
+<div class="icon"><i class="fa-solid fa-tags"></i></div>
+<h3>Affordable Prices</h3>
+<p>Best quality products at great prices.</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PRODUCTS -->
+
+<section id="products">
+
+<div class="container">
+
+<h2 class="section-title">Popular Collections</h2>
+
+<div class="grid">
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1523381210434-271e8be1f52b">
+<div class="product-info">Men Collection</div>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1483985988355-763728e1935b">
+<div class="product-info">Women Collection</div>
+</div>
+
+<div class="product">
+<img src="https://images.unsplash.com/photo-1503919545889-aef636e10ad4">
+<div class="product-info">Kids Wear</div>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- PAYMENT -->
+
+<section>
+
+<div class="container">
+
+<h2 class="section-title">Payment Methods</h2>
+
+<div class="payment-grid">
+
+<div class="payment-card">
+<i class="fa-solid fa-money-bill-wave"></i>
+<p>Cash</p>
+</div>
+
+<div class="payment-card">
+<i class="fa-solid fa-credit-card"></i>
+<p>Card</p>
+</div>
+
+<div class="payment-card">
+<i class="fa-brands fa-google-pay"></i>
+<p>UPI</p>
+</div>
+
+<div class="payment-card">
+<i class="fa-solid fa-mobile-screen"></i>
+<p>Mobile Pay</p>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- REVIEWS -->
+
+<section id="reviews">
+
+<div class="container">
+
+<h2 class="section-title">Customer Reviews</h2>
+
+<div class="grid">
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>Best shopping mall in Thungathurthi.</p>
+<strong>Ramesh</strong>
+</div>
+
+<div class="review">
+<div class="stars">★★★★☆</div>
+<p>Nice quality clothes and good prices.</p>
+<strong>Sravani</strong>
+</div>
+
+<div class="review">
+<div class="stars">★★★★★</div>
+<p>Highly recommended for family shopping.</p>
+<strong>Mahesh</strong>
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- LOCATION -->
+
+<section id="location" class="location">
+
+<div class="container location-grid">
+
+<div>
+
+<h2>Visit Us Today</h2>
+
+<p>
+We are conveniently located on NH 365. Come visit us for the best shopping experience in Telangana.
+</p>
+
+<div class="info-item">
+<i class="fa-solid fa-location-dot"></i>
+<p>NH 365, Thungathurthi, Telangana 508280</p>
+</div>
+
+<div class="info-item">
+<i class="fa-solid fa-phone"></i>
+<p>+91 8790839654</p>
+</div>
+
+<div class="info-item">
+<i class="fa-solid fa-clock"></i>
+<p>9 AM – 9 PM</p>
+</div>
+
+</div>
+
+<div class="map">
+<iframe src="https://maps.google.com/maps?q=thungathurthi&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe>
+</div>
+
+</div>
+
+</section>
+
+<footer>
+<p>© 2026 Vamshi Shopping Mall</p>
+</footer>
+
+<a href="tel:7702709293" class="call-btn">
+<i class="fas fa-phone"></i>
+</a>
+
+<a href="https://wa.me/917702709293" class="whatsapp">
+<i class="fab fa-whatsapp"></i>
+</a>
+
+<script>
+
+const menu=document.querySelector(".menu-toggle");
+const nav=document.querySelector(".nav-links");
+
+menu.onclick=()=>{
+nav.classList.toggle("active");
+}
+
+</script>
+
+</body>
+</html>
